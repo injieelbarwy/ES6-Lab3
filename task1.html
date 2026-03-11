@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Shapes Lab</title>
+</head>
+<body>
+
+<canvas id="myCanvas" width="800" height="400" style="border:1px solid black"></canvas>
+
+<script>
+
+
+class Polygon {
+    constructor(name) {
+        this.name = name;
+    }
+
+    toString() {
+        return `Shape: ${this.name}`;
+    }
+}
+
+
+class Rectangle extends Polygon {
+
+    constructor(width, height) {
+        super("Rectangle");
+        this.width = width;
+        this.height = height;
+    }
+
+    area() {
+        return this.width * this.height;
+    }
+
+    toString() {
+        return `${super.toString()} width=${this.width} height=${this.height} area=${this.area()}`;
+    }
+}
+
+
+class Square extends Polygon {
+
+    constructor(side) {
+        super("Square");
+        this.side = side;
+    }
+
+    area() {
+        return this.side * this.side;
+    }
+
+    toString() {
+        return `${super.toString()} side=${this.side} area=${this.area()}`;
+    }
+}
+
+
+class Circle extends Polygon {
+
+    constructor(radius) {
+        super("Circle");
+        this.radius = radius;
+    }
+
+    area() {
+        return Math.PI * this.radius * this.radius;
+    }
+
+    toString() {
+        return `${super.toString()} radius=${this.radius} area=${this.area().toFixed(2)}`;
+    }
+}
+
+
+class Triangle extends Polygon {
+
+    constructor(base, height) {
+        super("Triangle");
+        this.base = base;
+        this.height = height;
+    }
+
+    area() {
+        return 0.5 * this.base * this.height;
+    }
+
+    toString() {
+        return `${super.toString()} base=${this.base} height=${this.height} area=${this.area()}`;
+    }
+}
+
+
+let rect = new Rectangle(100,50);
+let square = new Square(60);
+let circle = new Circle(30);
+let triangle = new Triangle(80,60);
+
+
+console.log(rect.toString());
+console.log(square.toString());
+console.log(circle.toString());
+console.log(triangle.toString());
+
+
+let canvas = document.getElementById("myCanvas");
+let ctx = canvas.getContext("2d");
+
+
+ctx.fillStyle="red";
+ctx.fillRect(20,20,100,50);
+
+
+ctx.fillStyle="red";
+ctx.fillRect(150,20,60,60);
+
+
+ctx.beginPath();
+ctx.arc(300,50,30,0,Math.PI*2);
+ctx.fillStyle="red";
+ctx.fill();
+
+
+ctx.beginPath();
+ctx.moveTo(450,80);
+ctx.lineTo(500,20);
+ctx.lineTo(550,80);
+ctx.closePath();
+ctx.fillStyle="red";
+ctx.fill();
+
+</script>
+
+</body>
+</html>
